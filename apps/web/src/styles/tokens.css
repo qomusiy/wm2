@@ -1,0 +1,52 @@
+:root {
+  --font-ui: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* Surfaces: a near-black app with slightly lifted panels (VS Code structure, cinema darkness). */
+  --bg-app: #0e0e11;
+  --bg-panel: #141418;
+  --bg-raised: #1b1b20;
+  --bg-input: #18181d;
+  --bg-hover: #23232a;
+  --bg-active: #2b2b33;
+  --bg-stage: #000;
+  --bg-overlay: rgba(10, 10, 13, 0.72);
+  --border: #24242b;
+  --border-strong: #32323b;
+
+  --text-1: #ececf1;
+  --text-2: #a8a8b5;
+  --text-3: #70707d;
+  --text-on-accent: #fff;
+
+  --accent: #4f8cff;
+  --accent-hover: #6a9dff;
+  --accent-press: #3c78ea;
+  --accent-soft: rgba(79, 140, 255, 0.14);
+  --success: #3ecf8e;
+  --warning: #f5a524;
+  --danger: #f2555a;
+  --danger-soft: rgba(242, 85, 90, 0.14);
+
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 10px;
+  --radius-xl: 14px;
+
+  --titlebar-h: 44px;
+  --statusbar-h: 26px;
+  --panel-w: 360px;
+
+  --shadow-pop: 0 10px 32px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--border-strong);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 20px 60px rgba(0, 0, 0, 0.45);
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur: 180ms;
+
+  --z-overlay: 10;
+  --z-controls: 20;
+  --z-popover: 40;
+  --z-modal: 60;
+  --z-toast: 80;
+}

@@ -1,0 +1,70 @@
+.card {
+  display: flex; flex-direction: column; width: min(100%, 290px); margin: 6px 0 2px; overflow: hidden; text-align: left;
+  border-radius: var(--radius-l); background: var(--bg-raised); border: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+}
+.thumb {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; cursor: pointer;
+}
+.thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms var(--ease), filter 300ms var(--ease); }
+.thumb:hover img { transform: scale(1.03); filter: brightness(0.85); }
+.playMark {
+  position: absolute; left: 50%; top: 50%; width: 46px; height: 32px; margin: -16px 0 0 -23px; display: grid; place-items: center;
+  border-radius: 9px; background: rgba(0, 0, 0, 0.62); color: #fff; backdrop-filter: blur(4px);
+  transition: background var(--dur) var(--ease);
+}
+.thumb:hover .playMark { background: #ff0033; }
+.playMark svg { margin-left: 2px; }
+.startAt {
+  position: absolute; right: 6px; bottom: 6px; padding: 1px 6px; border-radius: 4px; background: rgba(0, 0, 0, 0.78);
+  color: #fff; font-size: 11px; font-weight: 650; font-variant-numeric: tabular-nums;
+}
+.body { display: flex; flex-direction: column; gap: 3px; padding: 8px 10px 9px; min-width: 0; }
+.title {
+  color: var(--text-1); font-size: 13px; font-weight: 650; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere;
+}
+.skeleton {
+  height: 14px; width: 80%; margin: 2px 0 3px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--bg-hover) 0%, var(--bg-active) 50%, var(--bg-hover) 100%); background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.channel { display: flex; align-items: center; gap: 6px; min-width: 0; color: var(--text-2); font-size: 12px; }
+.channel span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 5px; }
+.watch {
+  display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 12.5px; font-weight: 650; white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.watch:hover { background: var(--accent-hover); }
+.watch:active { transform: scale(0.96); }
+.watch:disabled { opacity: 0.8; cursor: progress; }
+.confirm { background: var(--warning); color: #1a1205; }
+.confirm:hover { background: #ffb63d; }
+.now { display: inline-flex; align-items: center; gap: 5px; color: var(--success); font-size: 12.5px; font-weight: 650; }
+.hint { color: var(--text-3); font-size: 12px; }
+.external {
+  flex: none; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: var(--text-2);
+}
+.external:hover { background: var(--bg-hover); color: var(--text-1); }
+.unavailable {
+  flex-direction: row; align-items: flex-start; gap: 8px; padding: 8px 10px; color: var(--text-2); font-size: 12px; line-height: 1.4;
+}
+.unavailable svg { flex: none; margin-top: 2px; opacity: 0.7; }
+
+/* Inside a notification card over the video: one compact row. */
+.compact {
+  flex-direction: row; align-items: center; width: 100%; margin: 6px 0 2px; background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.compact .thumb { flex: none; width: 92px; border-radius: 0; }
+.compact .playMark { width: 30px; height: 21px; margin: -10px 0 0 -15px; border-radius: 6px; }
+.compact .startAt { display: none; }
+.compact .body { padding: 6px 8px; gap: 2px; }
+.compact .title { font-size: 12.5px; -webkit-line-clamp: 1; color: #fff; }
+.compact .channel { font-size: 11.5px; color: rgba(255, 255, 255, 0.65); }
+.compact .actions { margin-top: 3px; }
+.compact .watch { height: 24px; padding: 0 10px; font-size: 12px; }
+.compact.unavailable { padding: 7px 9px; color: rgba(255, 255, 255, 0.7); }

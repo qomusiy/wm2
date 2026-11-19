@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.cache/
+test-results/
+playwright-report/
+*.log
+packages/server/test/fixtures/media/
+e2e/.host.json
+e2e/.host.log
+release/
+.build-cache/

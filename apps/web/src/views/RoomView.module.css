@@ -1,0 +1,107 @@
+.room { height: 100%; display: grid; grid-template-rows: var(--titlebar-h) minmax(0, 1fr) var(--statusbar-h); background: var(--bg-app); }
+
+/* ---- title bar ---- */
+.titlebar {
+  display: flex; align-items: center; gap: 10px; padding: 0 8px 0 14px; min-width: 0;
+  background: var(--bg-panel); border-bottom: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 9px; flex: none; font-weight: 650; font-size: 13.5px; color: var(--text-1); }
+.logo { width: 22px; height: 22px; border-radius: 6px; background: var(--accent); display: grid; place-items: center; color: #fff; flex: none; }
+.logo svg { margin-left: 1px; }
+.sep { width: 1px; height: 18px; background: var(--border-strong); flex: none; }
+.title { min-width: 0; display: flex; align-items: center; gap: 10px; flex: 1; }
+.titleText { font-weight: 600; color: var(--text-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip {
+  flex: none; padding: 2px 8px; border-radius: 999px; background: var(--bg-raised); border: 1px solid var(--border);
+  color: var(--text-2); font-size: 11.5px; white-space: nowrap;
+}
+.actions { display: flex; align-items: center; gap: 4px; flex: none; }
+.avatars { display: flex; align-items: center; margin-right: 6px; }
+.avatars > * { margin-left: -6px; box-shadow: 0 0 0 2px var(--bg-panel); }
+.avatars > *:first-child { margin-left: 0; }
+.more { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-active); color: var(--text-2); font-size: 11px; font-weight: 650; }
+
+/* ---- main ---- */
+.main { min-height: 0; display: grid; }
+.side { grid-template-columns: minmax(0, 1fr) var(--panel-w); }
+.stacked { grid-template-rows: auto minmax(0, 1fr); grid-template-columns: minmax(0, 1fr); }
+.panelHidden.side { grid-template-columns: minmax(0, 1fr); }
+.panelHidden.stacked { grid-template-rows: minmax(0, 1fr); }
+.stage { position: relative; min-height: 0; min-width: 0; background: #000; }
+.stacked .stage { aspect-ratio: 16 / 9; max-height: 62vh; width: 100%; }
+/* YouTube's control bar sits below the picture: make room for it so the picture keeps its 16:9. */
+.stacked .stage:has([data-mode='youtube']) { aspect-ratio: auto; height: calc(56.25vw + 64px); }
+.panelHidden.stacked .stage { aspect-ratio: auto; max-height: none; height: 100%; }
+.panel { min-height: 0; min-width: 0; display: flex; flex-direction: column; background: var(--bg-panel); }
+.side .panel { border-left: 1px solid var(--border); }
+.stacked .panel { border-top: 1px solid var(--border); }
+
+.tabs { flex: none; display: flex; align-items: stretch; height: 38px; padding: 0 8px; border-bottom: 1px solid var(--border); gap: 2px; }
+.tab {
+  position: relative; display: inline-flex; align-items: center; gap: 7px; padding: 0 10px; color: var(--text-3);
+  font-size: 11.5px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.tab:hover { color: var(--text-2); }
+.tabActive { color: var(--text-1); }
+.tabActive::after { content: ''; position: absolute; left: 8px; right: 8px; bottom: -1px; height: 2px; border-radius: 2px; background: var(--accent); }
+.count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; display: inline-grid; place-items: center; background: var(--bg-active); color: var(--text-2); font-size: 10.5px; letter-spacing: 0; }
+.unread { background: var(--accent); color: #fff; }
+.tabBody { flex: 1; min-height: 0; }
+
+/* ---- invite card (host) ---- */
+.invite { flex: none; margin: 12px; padding: 14px; border-radius: var(--radius-l); background: var(--bg-raised); border: 1px solid var(--border-strong); }
+.inviteTitle { display: flex; align-items: center; gap: 8px; font-weight: 650; margin-bottom: 4px; }
+.inviteText { color: var(--text-2); font-size: 12.5px; margin-bottom: 10px; }
+.inviteRow { display: flex; gap: 6px; }
+.linkField {
+  flex: 1; min-width: 0; height: 32px; padding: 0 10px; border-radius: var(--radius-m); background: var(--bg-input);
+  border: 1px solid var(--border-strong); color: var(--text-2); font-family: var(--font-mono); font-size: 11.5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center;
+}
+.inviteStatus { display: flex; align-items: center; gap: 8px; color: var(--text-2); font-size: 12.5px; }
+
+/* ---- fullscreen chat drawer ---- */
+.drawer {
+  position: absolute; z-index: 8; top: 12px; right: 12px; bottom: 84px; width: min(360px, 42%);
+  display: flex; flex-direction: column; border-radius: var(--radius-xl); overflow: hidden;
+  background: rgba(16, 16, 20, 0.86); backdrop-filter: blur(14px); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.drawer > * { flex: 1; min-height: 0; }
+.titleIcon { flex: none; }
+.ytDialog { display: flex; flex-direction: column; gap: 12px; }
+.ytNote { margin: 0; color: var(--text-3); font-size: 12.5px; line-height: 1.5; }
+/* YouTube: the control bar is below the picture, so the drawer can use the full height of it. */
+:global([data-mode='youtube']) .drawer { bottom: 12px; }
+
+/* ---- status bar ---- */
+.statusbar {
+  display: flex; align-items: center; gap: 2px; padding: 0 6px; min-width: 0; overflow: hidden;
+  background: var(--bg-panel); border-top: 1px solid var(--border); color: var(--text-2); font-size: 12px;
+}
+.item { display: inline-flex; align-items: center; gap: 6px; height: 100%; padding: 0 8px; white-space: nowrap; border-radius: 0; }
+button.item:hover { background: var(--bg-hover); color: var(--text-1); }
+.item svg { flex: none; }
+.spacer { flex: 1; }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.ok { background: var(--success); }
+.warn { background: var(--warning); }
+.bad { background: var(--danger); }
+.muted { color: var(--text-3); }
+
+@media (max-width: 760px) {
+  .chip, .brandName, .avatars, .hideNarrow { display: none; }
+  .titlebar { padding: 0 6px 0 10px; gap: 8px; }
+  .stacked .stage { max-height: 45vh; }
+}
+
+/* ---- resizable side panel ---- */
+.panel { position: relative; }
+.resizer { position: absolute; z-index: 3; top: 0; bottom: 0; left: -3px; width: 7px; cursor: col-resize; touch-action: none; }
+.resizer::after { content: ''; position: absolute; top: 0; bottom: 0; left: 3px; width: 1px; background: transparent; transition: background var(--dur) var(--ease); }
+.resizer:hover::after, .resizing .resizer::after { background: var(--accent); width: 2px; }
+.resizing { cursor: col-resize; user-select: none; }
+.resizing .stage { pointer-events: none; }
+
+/* ---- immersive (phone landscape) ---- */
+.immersive { grid-template-rows: 0 minmax(0, 1fr) 0; }
+.immersive .titlebar, .immersive .statusbar { visibility: hidden; overflow: hidden; border: 0; }

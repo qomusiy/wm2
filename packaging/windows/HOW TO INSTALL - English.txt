@@ -1,0 +1,86 @@
+WATCHROOM - install it and host a watch party (Windows)
+=======================================================
+
+Watchroom plays a video from YOUR computer so you and your friends can watch it
+together, in sync, with chat. Only you (the host) install it. Friends install
+nothing: they open the link you send them in a browser (computer or phone).
+
+What you need
+- Windows 10 or Windows 11, 64-bit.
+- About 700 MB of free disk space. (Watchroom also keeps a cache of prepared
+  video, up to 10 GB, and cleans it up by itself.)
+- Internet. Your UPLOAD speed decides how good the picture can be for your
+  friends (check it at fast.com -> "Show more info" -> Upload).
+
+
+1. INSTALL
+----------
+1. Double-click "Watchroom-Setup-0.2.0.exe".
+   (If you received a .zip file: right-click it -> "Extract All..." -> Extract,
+   then double-click the .exe inside the new folder.)
+
+2. Windows may show a blue window "Windows protected your PC".
+   This is normal for small apps without a paid signing certificate.
+   Click "More info", then click "Run anyway".
+
+3. Installation takes a few seconds. It asks no questions and needs no
+   administrator password. Watchroom opens by itself, and a "Watchroom"
+   shortcut appears on the Desktop and in the Start menu.
+
+
+2. HOST A WATCH PARTY
+---------------------
+1. Open Watchroom. Click "Open video..." and choose a video file
+   (MKV, MP4, AVI, MOV, WebM and more), or drag the file onto the window.
+   For a YouTube video: paste its link into the box "Paste a YouTube link"
+   (under the button) and click "Watch". YouTube videos don't use your
+   internet upload: everyone streams them from YouTube.
+
+2. Wait until the bottom bar says "Link ready". The first time this can take
+   up to a minute.
+
+3. Click "Invite" (blue button, top right) and then "Copy".
+   Send the copied link to your friends (Telegram, WhatsApp, ...).
+
+4. Your friends open the link in Chrome, Edge, Firefox or Safari, type a name
+   and click "Join". That's all.
+
+5. Anyone can play, pause and jump in the video; everybody stays in sync.
+   The chat is on the right. Press F for full screen.
+
+6. If Windows asks "Windows Defender Firewall has blocked some features of
+   this app" for Watchroom: tick "Private networks" and click "Allow access".
+   This lets video go directly to your friends (faster). If you don't allow
+   it, everything still works, just through the internet link.
+
+Keep Watchroom open and the computer awake while you watch.
+The link is new every time you start Watchroom - send the new one.
+
+
+3. TIPS
+-------
+- Quality: every friend chooses their own quality (button at the bottom right
+  of the video) or leaves it on "Auto". If the video stutters for everyone,
+  your upload speed is the limit: ask friends to choose 480p or 360p.
+- The "Room" tab (right side) shows how each friend is connected, and lets
+  you lock the room, set a password, or remove someone.
+- Only the video you open is shared. Your other files are never visible
+  to anyone.
+- Next time, the home screen shows "Continue watching": one click opens the
+  video again where you stopped.
+
+
+4. IF SOMETHING GOES WRONG
+--------------------------
+- "Link unavailable" / the link doesn't open: check that this computer is
+  online, then click "Invite" -> "Try again". Wait until "Link ready".
+- Friends see a spinning circle after jumping to a new place in the video:
+  give it a few seconds, the computer is preparing that part.
+- The picture stutters: ask friends to choose a lower quality.
+- Send the log to whoever helps you: press the Alt key to show the menu,
+  then Help -> Open Log Folder, and send the file "watchroom.log".
+
+
+UNINSTALL
+---------
+Windows Settings -> Apps -> Installed apps -> Watchroom -> Uninstall.

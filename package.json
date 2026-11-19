@@ -1,0 +1,39 @@
+{
+  "name": "watchroom",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Self-hosted watch party: stream a local video to friends in sync, with chat.",
+  "type": "module",
+  "workspaces": [
+    "packages/protocol",
+    "packages/server",
+    "apps/web",
+    "apps/desktop"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build -w @watchroom/web && npm run build -w @watchroom/server && npm run build -w @watchroom/desktop",
+    "start": "npm run build && npm run start -w @watchroom/desktop",
+    "app": "npm run start -w @watchroom/desktop",
+    "host": "node packages/server/dist/cli.cjs",
+    "typecheck": "tsc -p packages/protocol && tsc -p packages/server && tsc -p apps/web && tsc -p apps/desktop",
+    "test": "vitest run --project unit",
+    "test:media": "vitest run --project media",
+    "test:all": "vitest run",
+    "test:e2e": "playwright test",
+    "test:desktop": "node e2e/desktop-smoke.mjs test-results packages/server/test/fixtures/media/h264_ac3_51_multi.mkv",
+    "package": "npm run build && electron-builder --projectDir apps/desktop --linux",
+    "package:win": "node scripts/build-windows.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "electron-builder": "26.18.0",
+    "emojibase-data": "^18.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

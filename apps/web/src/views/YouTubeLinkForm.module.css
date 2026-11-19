@@ -1,0 +1,16 @@
+.form { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.field {
+  display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 6px 0 10px; border-radius: var(--radius-l);
+  background: var(--bg-input); border: 1px solid var(--border-strong); transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast);
+}
+.field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.fieldOk:focus-within { border-color: #ff3355; box-shadow: 0 0 0 3px rgba(255, 51, 85, 0.14); }
+.fieldError, .fieldError:focus-within { border-color: var(--danger); box-shadow: 0 0 0 3px var(--danger-soft); }
+.lead { flex: none; width: 46px; height: 30px; display: grid; place-items: center; }
+.thumb { width: 46px; height: 26px; border-radius: 4px; object-fit: cover; background: #000; animation: thumbIn 220ms var(--ease); }
+@keyframes thumbIn { from { opacity: 0; transform: scale(0.9); } }
+.input { flex: 1; min-width: 0; height: 100%; background: none; border: 0; color: var(--text-1); font-size: 14px; }
+.input::placeholder { color: var(--text-3); }
+.input:focus-visible { outline: none; }
+.input:disabled { opacity: 0.7; }
+.error { padding: 8px 11px; border-radius: var(--radius-m); background: var(--danger-soft); color: var(--text-1); font-size: 12.5px; line-height: 1.45; }

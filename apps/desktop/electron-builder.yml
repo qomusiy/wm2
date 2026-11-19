@@ -1,0 +1,111 @@
+# Packages for the Watchroom host app.
+#   Linux:   AppImage (runs anywhere) and .deb (menu entry, "Open with Watchroom", pulls in ffmpeg + bubblewrap).
+#   Windows: per-user NSIS installer with ffmpeg and cloudflared bundled (built by scripts/build-windows.mjs, which
+#            downloads and verifies those and the Windows Electron, then passes -c.electronDist).
+appId: app.watchroom.desktop
+productName: Watchroom
+copyright: Watchroom
+directories:
+  output: ../../release
+  buildResources: assets
+# Reuse the Electron already installed for development (no 100 MB download). Windows builds override this.
+electronDist: ../../node_modules/electron/dist
+electronVersion: 45.2.3
+npmRebuild: false
+asar: true
+files:
+  - dist/main.cjs
+  - dist/preload.cjs
+  - package.json
+extraResources:
+  - from: ../../packages/server/dist/utility.cjs
+    to: server/utility.cjs
+  - from: ../../apps/web/dist
+    to: web
+  - from: assets/icon.png
+    to: icon.png
+  # Native WebRTC bindings for direct connections (loaded by the server process at runtime).
+  - from: ../../node_modules/node-datachannel
+    to: server/node_modules/node-datachannel
+    filter: [package.json, LICENSE, dist/cjs/**/*.cjs]
+  - from: ../../node_modules/detect-libc
+    to: server/node_modules/detect-libc
+    filter: [package.json, LICENSE, lib/**]
+artifactName: Watchroom-${version}-${arch}.${ext}
+linux:
+  target: [AppImage, deb]
+  extraResources:
+    - from: ../../node_modules/@node-datachannel/linux-x64-gnu
+      to: server/node_modules/@node-datachannel/linux-x64-gnu
+  category: AudioVideo
+  # Local builds: reserved .invalid names (RFC 2606), no personal details in the package.
+  maintainer: Watchroom local build <noreply@watchroom.invalid>
+  syncDesktopName: true
+  executableName: watchroom
+  icon: assets/icon.png
+  synopsis: Watch videos from this computer together with friends, in sync.
+  description: >-
+    Watchroom streams a video from this computer to friends' browsers: shared play, pause and seek, chat, and
+    per-viewer quality. Friends join with a link, no install needed.
+  mimeTypes:
+    - video/x-matroska
+    - video/mp4
+    - video/x-m4v
+    - video/quicktime
+    - video/webm
+    - video/x-msvideo
+    - video/vnd.avi
+    - video/mp2t
+    - video/mpeg
+    - video/x-ms-wmv
+    - video/x-flv
+    - video/ogg
+    - video/3gpp
+  desktop:
+    entry:
+      Name: Watchroom
+      GenericName: Watch party
+      Comment: Watch videos together with friends, in sync
+      Keywords: watch;party;together;video;sync;movie;
+      StartupWMClass: Watchroom
+deb:
+  packageCategory: video
+  priority: optional
+  depends:
+    - libgtk-3-0 | libgtk-3-0t64
+    - libnotify4
+    - libnss3
+    - libxss1
+    - libxtst6
+    - xdg-utils
+    - libatspi2.0-0 | libatspi2.0-0t64
+    - libuuid1
+    - libsecret-1-0
+    - ffmpeg
+    - bubblewrap
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: assets/icon.png
+  executableName: Watchroom
+  # No code-signing certificate: skip signing, keep the icon and version details on the .exe.
+  signExecutable: false
+  extraResources:
+    - from: ../../.build-cache/windows/stage/ffmpeg
+      to: ffmpeg
+    - from: ../../.build-cache/windows/stage/bin
+      to: bin
+    - from: ../../.build-cache/windows/ndc-win/package
+      to: server/node_modules/@node-datachannel/win32-x64-msvc
+nsis:
+  # Double-click and done: installs for this Windows user only (no admin prompt), adds Desktop and Start menu
+  # shortcuts, and starts Watchroom. No file associations: Watchroom must not become the default video player.
+  oneClick: true
+  perMachine: false
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Watchroom
+  runAfterFinish: true
+  deleteAppDataOnUninstall: false
+  artifactName: Watchroom-Setup-${version}.${ext}
