@@ -182,3 +182,8 @@ scripts           Load test, emoji/sticker generators
 - Settings, the recent list and its pictures: `~/.config/watchroom`.
 - Transcoded segments: `~/.cache/watchroom/media` (rewatching is instant; delete the folder any time to free space).
 # wm2
+
+## License
+
+[MIT](LICENSE). The Windows installer bundles third-party programs under their own licenses: ffmpeg (GPL v3) and
+cloudflared (Apache 2.0); their license notes are installed next to them. Stickers are Microsoft Fluent Emoji (MIT).

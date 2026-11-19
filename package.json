@@ -1,6 +1,7 @@
 {
   "name": "watchroom",
   "private": true,
+  "license": "MIT",
   "version": "0.2.0",
   "description": "Self-hosted watch party: stream a local video to friends in sync, with chat.",
   "type": "module",
